@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Third Container (Submit damage assessment)  -->
+<div class="container-fluid bg-2 text-center" id="third">
+{% if scroll %}
+<script>
+    document.location.hash = '#' + '{{ scroll }}';
+ 
+
+
+</script>
+{% endif %}
+    <h3>Damage Assessment Complete</h3>
+    <br>
+
+      <h4>Results:</h4>
+    <table>
+    {% if result=='bumper_dent'%}
+    {% set cost= '2500' %}
+    {% set text="We regret to inform you that this is a minor dent and will not cause any trouble in the functioning of the car. Hence it is not important to remove the dent.The outer appearance of the car is compromised and we do  not provide insurance for beautification of the car.So insurance will not be claimed" %}
+    {% endif %}
+    {% if result=='doordent'%}
+    {% set cost= '5000' %}
+    {% set text="The severity of damage is very high and because of this huge impact there is a huge dent and the color is scraped off and it causes multiple small dents and scratches. We would like to inform you that such type of damages are included in our policy.So the insurance claim will be provided the entire amunt will be covered " %}
+    {% endif %}
+    {% if result=='headlight'%}
+    {% set cost= '4000' %}
+    {% set text="The severity of damage is very high and since everyone knows that having a fully functional headlight is very essential to avoid accidents. And we would like to inform that such types of damages are included in our insurance policy. The cost may vary. The average cost is roughly 3000 for single headlight in the front,6000 for pair of front headlights, 2000 for single rear headlight and 
+    4000 for a pair of rear headlight. Our company will cover 100 % of the repairing cost." %}
+    {% endif %}
+    {% if result=='smash'%}
+    {% set cost= '25000' %}
+    {% set text="Since the car had a very bad accident,the impact was too high and the entire car was smashed. The car is in no working condition in such cases and thus the car should be repaired at its earliest.This is a major damage and is included in our policy. We will cover this damage repairing cost as it lies under our policy."%}
+    {% endif %}
+    {% if result=='glass_shatter'%}
+    {% set cost= '14000' %}
+    {% set text="The above mentioned cost is the average cost in case of glass shatter of windows and windshield. These are two very  important parts of a car and as we all know there is no way to repair the broken glass, it has to be replaced and it will cost you a fortune  but we have got it covered for you. There are many quality of glasses and the cost varies based on the quality of glass you choose. We will provide you the best quality glass in the most reasonable range  that will last long as it will have high durability. Also it will protect our clients in any future accidents. The cost for windsheild based on its high quality glass is 18000. In case if the window glass is shattered the cost of replacing the window glass is 8000. If you wish to choose a glass for higher quality you will have to pay the extra amount from your pocket  " %}
+    {% endif %}
+    {% if result=='scratch'%}
+    {% set cost= '1500' %}
+    {% set text="We regret to inform you that this is a minor damage and  in most of the scenarious it goes unnoticed. Also it will not cause any trouble in the functioning of the car. Hence it is not important to remove the scratch.The outer appearance of the car is compromised and we do not provide insurance for beautification of the car.So insurance will not be claimed." %}
+    {% endif %}
+
+
+    <tr>     
+        <td>Car validation check</td>
+        <td><span class="glyphicon glyphicon-ok"></span></td></tr>
+        <tr><td>Damage validation check</td>
+        {% if result !='no_broken'%}
+        <td><span class="glyphicon glyphicon-ok"></span></td></tr>
+        <tr><td>Cost Estimate</td>
+        <td>{{ cost }}</td></tr>
+        <tr><td>Damaged part</td>
+        <td>{{ result }}</td></tr>
+        <td  colspan='2'>{{text}}</td>
+           
+        {% else %}
+        <td><span class="glyphicon glyphicon-remove"></span></td></tr></table>
+        <br>
+        <td> Are you sure that the car is damaged? Please upload an image of a damaged vehicle</td></br>
+        {% endif %}
+
+      </table>
+       
+        <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="menu1">Next Steps
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="line-height: 20px;vertical-align:middle;" >
+    <!--<li class="dropdown-header">Next Steps</li>-->
+    <li><a href="{{ url_for('available', a='Third party support') }}">Send to insurance carrier</a></li>
+    <li><a href="{{ url_for('available', a='Documentation') }}">Print documentation</a></li>
+    <!--<li class="dropdown-header">Resubmit</li>-->
+    <li><a href="{{ url_for('assess') }}">Request another damage assessment</a></li>
+  </ul></div>
+</div>
+
+{% endblock %}
+
+<!--
+    <br><p><a href="{{ url_for('assess') }}" class="btn btn-default">
+    Submit Another Damage Assessment Request
+-->

@@ -1,0 +1,27 @@
+{% extends 'layout1.html' %}
+
+{% block body %}
+<style type="text/css">
+	div {
+  position: absolute;
+  top: 200px;
+  left: 300px;
+}
+body{
+  background-image: url('../static/splash2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+
+  }   
+
+</style>
+  <body>
+  <div >
+
+      <a href="/register" class="btn btn-primary btn-lg">Register</a>
+      <a href="/login" class="btn btn-success btn-lg">Login</a>    
+  </div>
+</body>
+{% endblock %}
